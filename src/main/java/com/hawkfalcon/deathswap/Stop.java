@@ -28,7 +28,7 @@ public class Stop {
 
     public void cleanUp(String n, String o, boolean died) {
         Player other = plugin.getServer().getPlayer(o);
-        plugin.utility.broadcast(ChatColor.DARK_AQUA + o + " has won against " + n + "!");
+        plugin.utility.broadcast(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("GameEndBroadcast").replace("%WINNER%", o).replace("LOSER", n)));
         if (died) {
             plugin.utility.message(n + " died, you win!", o);
         } else {
@@ -41,5 +41,11 @@ public class Stop {
         plugin.startgame.remove(n);
         plugin.match.remove(o);
         plugin.startgame.remove(o);
+    }
+    
+    //IDK if this will work but hey, what's life without advertures.
+    public Player getWinner(String o) {
+    	Player Winner = plugin.getServer().getPlayer(o);
+    	return Winner;
     }
 }
